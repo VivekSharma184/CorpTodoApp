@@ -59,6 +59,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'corptodoapp-dtdph0axdqc6csbm'
+          app-name: 'corptodoapp'
           slot-name: 'Production'
           package: .
+
