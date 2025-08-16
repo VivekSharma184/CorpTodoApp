@@ -1,6 +1,7 @@
 // Central configuration file for the application
 
 // API endpoints - use environment variable or fallback to localhost
+// Updated to use Azure backend URL from Netlify environment variables
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5002';
 
 // Export configurations
