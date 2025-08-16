@@ -1,0 +1,121 @@
+/* Basic Editor Styles */
+
+.basic-editor {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: white;
+  height: 100%;
+}
+
+/* Toolbar styles */
+.basic-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.toolbar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toolbar-button:hover {
+  background-color: #f3f4f6;
+}
+
+.toolbar-button.active {
+  background-color: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+/* Editor area */
+.basic-editor-textarea {
+  width: 100%;
+  height: calc(100% - 52px); /* Account for toolbar */
+  padding: 1rem;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* Preview area */
+.basic-editor-preview {
+  width: 100%;
+  height: calc(100% - 52px);
+  padding: 1rem;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.basic-editor-viewer {
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Heading styles */
+.basic-editor-viewer h1,
+.basic-editor-preview h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.basic-editor-viewer h2,
+.basic-editor-preview h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.basic-editor-viewer h3,
+.basic-editor-preview h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Code block styles */
+.basic-editor-viewer pre,
+.basic-editor-preview pre,
+.code-block {
+  background-color: #f6f8fa;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow: auto;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  white-space: pre;
+  border: 1px solid #e2e8f0;
+}

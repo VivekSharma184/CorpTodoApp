@@ -1,0 +1,200 @@
+/* QuillEditor Custom Styles */
+
+/* Editor container */
+.quill-editor-container {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom toolbar styles */
+.custom-quill-editor .ql-toolbar.ql-snow {
+  border-color: #e5e7eb;
+  background-color: #f9fafb;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  padding: 8px;
+}
+
+/* Custom editor area styles */
+.custom-quill-editor .ql-container.ql-snow {
+  border-color: #e5e7eb;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  font-size: 16px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Editor content area */
+.custom-quill-editor .ql-editor {
+  min-height: 200px;
+  line-height: 1.6;
+}
+
+/* Code block styling */
+.custom-quill-editor .ql-editor pre.ql-syntax,
+.quill-reader .ql-editor pre.ql-syntax {
+  background-color: #1e1e1e; /* VS Code dark theme background */
+  color: #d4d4d4; /* Light text for dark background */
+  padding: 1rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+/* Blockquote styling */
+.custom-quill-editor .ql-editor blockquote,
+.quill-reader .ql-editor blockquote {
+  border-left: 4px solid #9ca3af;
+  padding-left: 16px;
+  color: #4b5563;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* Heading styles */
+.custom-quill-editor .ql-editor h1,
+.quill-reader .ql-editor h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.25rem;
+}
+
+.custom-quill-editor .ql-editor h2,
+.quill-reader .ql-editor h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.custom-quill-editor .ql-editor h3,
+.quill-reader .ql-editor h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* List styling */
+.custom-quill-editor .ql-editor ol,
+.quill-reader .ql-editor ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+  list-style-type: decimal;
+}
+
+.custom-quill-editor .ql-editor ul,
+.quill-reader .ql-editor ul {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+  list-style-type: disc;
+}
+
+/* Link styling */
+.custom-quill-editor .ql-editor a,
+.quill-reader .ql-editor a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.custom-quill-editor .ql-editor a:hover,
+.quill-reader .ql-editor a:hover {
+  text-decoration: underline;
+}
+
+/* Toolbar button styling */
+.custom-quill-editor .ql-snow .ql-toolbar button {
+  width: 28px;
+  height: 28px;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.custom-quill-editor .ql-snow .ql-toolbar button:hover {
+  background-color: #e5e7eb;
+}
+
+.custom-quill-editor .ql-snow .ql-toolbar button.ql-active {
+  background-color: #e0e7ff;
+}
+
+/* Read-only viewer styles */
+.quill-reader {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+.quill-reader .ql-editor {
+  padding: 1rem;
+}
+
+/* Remove toolbar shadow in read-only mode */
+.quill-reader .ql-container {
+  border: none !important;
+}
+
+/* Mermaid diagram styles */
+.mermaid-diagram {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 15px 0;
+  overflow: auto;
+  text-align: center;
+}
+
+.mermaid-diagram svg {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Style for diagram editing mode */
+.mermaid-diagram[contenteditable=true] {
+  border: 1px dashed #ccc;
+}
+
+/* Toolbar button for flowchart */
+
+
+/* Code syntax highlighting specific overrides */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #569cd6;
+}
+
+.hljs-string, 
+.hljs-title, 
+.hljs-attr, 
+.hljs-selector-id, 
+.hljs-selector-class, 
+.hljs-regexp, 
+.hljs-template-tag {
+  color: #ce9178;
+}
+
+.hljs-comment, 
+.hljs-quote {
+  color: #6a9955;
+  font-style: italic;
+}
+
+.hljs-number,
+.hljs-literal {
+  color: #b5cea8;
+}
+
+.hljs-doctag,
+.hljs-meta,
+.hljs-meta-string {
+  color: #1c6b48;
+}

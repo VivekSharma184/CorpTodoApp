@@ -1,0 +1,134 @@
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import axios from 'axios';
+import { API_BASE_URL } from '../config';
+import { getAuthHeader } from '../services/authService';
+
+const Sidebar = ({ activeView, setActiveView, onLogout }) => {
+  const { currentUser } = useAuth();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Check if current user is admin
+  useEffect(() => {
+    const checkAdminStatus = async () => {
+      if (!currentUser) {
+        setIsAdmin(false);
+        return;
+      }
+      
+      try {
+        const headers = getAuthHeader();
+        await axios.get(`${API_BASE_URL}/admin/stats`, { headers });
+        setIsAdmin(true);
+      } catch (error) {
+        setIsAdmin(false);
+      }
+    };
+    
+    checkAdminStatus();
+  }, [currentUser]);
+
+  // Define navigation items based on user role
+  const standardNavItems = [
+    { id: 'today', label: "Today's Plan", icon: 'fa-list-check' },
+    { id: 'tasks', label: 'My Tasks', icon: 'fa-tasks' },
+    { id: 'focus', label: 'Focus View', icon: 'fa-bullseye' },
+    { id: 'completed', label: 'Completed', icon: 'fa-check-circle' },
+    { id: 'knowledge', label: 'Knowledge Base', icon: 'fa-book' },
+    { id: 'report', label: 'Status Report', icon: 'fa-file-lines' },
+    { id: 'insights', label: 'Insights', icon: 'fa-chart-line' },
+    { id: 'calendar', label: 'Calendar', icon: 'fa-calendar' }
+  ];
+  
+  // Admin items
+  const adminItems = [
+    { id: 'admin', label: 'Admin Panel', icon: 'fa-shield-alt' }
+  ];
+  
+  // Combine nav items based on admin status
+  const navItems = isAdmin ? [...standardNavItems, ...adminItems] : standardNavItems;
+
+  // Handle menu item click - on mobile this will also close the menu
+  const handleMenuClick = (viewId) => {
+    setActiveView(viewId);
+    setMobileMenuOpen(false);
+  };
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  return (
+    <aside className="bg-white shadow-md md:w-64 w-full">
+      {/* Header */}
+      <div className="p-4 border-b flex justify-between items-center">
+        <div>
+          <h1 className="text-xl font-bold text-primary">
+            <i className="fas fa-clipboard-check mr-2"></i>
+            TaskMaster
+          </h1>
+          <p className="text-xs text-gray-500 hidden md:block">Manage your daily tasks</p>
+        </div>
+        
+        {/* Mobile menu button */}
+        <button 
+          className="md:hidden text-gray-500 hover:text-gray-700 focus:outline-none"
+          onClick={toggleMobileMenu}
+        >
+          <i className={`fas ${mobileMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
+        </button>
+      </div>
+      
+      {/* Navigation - hidden on mobile unless menu is open */}
+      <nav className={`${mobileMenuOpen ? 'block' : 'hidden'} md:block mt-2`}>
+        <ul className="md:space-y-0">
+          {navItems.map(item => (
+            <li key={item.id} className="mb-1 px-2">
+              <button
+                onClick={() => handleMenuClick(item.id)}
+                className={`w-full flex items-center px-3 py-2 text-left text-sm rounded-md transition-colors ${
+                  activeView === item.id
+                    ? 'bg-primary text-white'
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                <i className={`fas ${item.icon} mr-2`}></i>
+                <span>{item.label}</span>
+              </button>
+            </li>
+          ))}
+
+          {/* Logout button - shown in the menu on mobile */}
+          {currentUser && mobileMenuOpen && (
+            <li className="md:hidden mt-4 border-t pt-4 px-5">
+              <button
+                onClick={onLogout}
+                className="flex items-center text-red-600 hover:text-red-800 text-sm"
+              >
+                <i className="fas fa-sign-out-alt mr-2"></i>
+                <span>Logout</span>
+              </button>
+            </li>
+          )}
+        </ul>
+      </nav>
+      
+      {/* Logout button - hidden on mobile (shown in the menu instead) */}
+      {currentUser && (
+        <div className="border-t pt-4 mt-6 mx-4 hidden md:block">
+          <button
+            onClick={onLogout}
+            className="flex items-center text-red-600 hover:text-red-800 text-sm"
+          >
+            <i className="fas fa-sign-out-alt mr-2"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      )}
+    </aside>
+  );
+};
+
+export default Sidebar;
